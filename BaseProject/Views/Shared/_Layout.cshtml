@@ -11,9 +11,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BaseProject</a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-danger border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Project</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,34 +21,35 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Strategy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"></a>
+                        </li>
+                        <li class="nav-item">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="LogOut" class="nav-link text-dark">@User.Identity.Name (çıkış yap)</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="login" class="nav-link text-dark">Giriş Yap</a>
+                            }
                         </li>
                     </ul>
-                    <ul class="navbar flex-grow-2">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                           <a asp-controller="Account" asp-action="LogOut" class="nav-link text-light">@User.Identity.Name (çıkış yap)</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="Account" asp-action="login" class="nav-link text-light">Giriş Yap</a>
-                        }
-                    </ul>
+                     
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container">
         
             @RenderBody()
          
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container-fluid">
             &copy; 2023 - BaseProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
