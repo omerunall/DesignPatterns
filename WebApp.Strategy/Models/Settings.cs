@@ -4,7 +4,7 @@
     {
         public static string claimDatabaseType = "databasetype";
         public EDatabaseType DatabaseType;
-        public EDatabaseType getDefaultType => EDatabaseType.SqlServer;
+        public EDatabaseType getDefaultDatabaseType => EDatabaseType.SqlServer;
 
     }
 }

@@ -31,7 +31,7 @@ namespace WebApp.Strategy.Repositories
             return await _productCollection.Find(w => w.UserId == userId).ToListAsync();
         }
 
-        public async Task<Product> GetById(string id)
+        public async Task<Product> GetById(int id)
         {
             throw new System.NotImplementedException();
         }

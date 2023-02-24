@@ -28,14 +28,14 @@ namespace WebApp.Strategy.Repositories
             return await _context.Products.Where(w => w.UserId == userId).ToListAsync();
         }
 
-        public async Task<Product> GetById(string id)
+        public async Task<Product> GetById(int id)
         {
             return await _context.Products.FindAsync(id);
         }
 
         public async Task<Product> Save(Product product)
         {
-            product.Id = Convert.ToInt32(Guid.NewGuid());
+            /////sproduct.UserId = Guid.NewGuid().ToString();
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return product;
