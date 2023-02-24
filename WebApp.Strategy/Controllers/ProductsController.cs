@@ -27,8 +27,9 @@ namespace WebApp.Strategy.Controllers
         public async Task<IActionResult> Index()
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
-
-            return View(await _productRepository.GetAllByUserId(user.Id.ToString()));
+            var userid = await _userManager.FindByIdAsync(user.Result.Id);
+            var dx = userid.Id;
+            return View(await _productRepository.GetAllByUserId(dx.ToString()));
         }
 
         // GET: Products/Details/5
@@ -39,7 +40,7 @@ namespace WebApp.Strategy.Controllers
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById(id.ToString());
+            var product = await _productRepository.GetById((int)id);
             if (product == null)
             {
                 return NotFound();
@@ -64,7 +65,9 @@ namespace WebApp.Strategy.Controllers
             if (ModelState.IsValid)
             {
                 var user = _userManager.FindByNameAsync(User.Identity.Name);
-                product.UserId = user.Id.ToString();
+                var userid = await _userManager.FindByIdAsync(user.Result.Id);
+                var dx = userid.Id;
+                product.UserId = dx.ToString();
                 product.CreatedDate = DateTime.Now;
                 await _productRepository.Save(product);
 
@@ -81,7 +84,7 @@ namespace WebApp.Strategy.Controllers
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById(id.ToString());
+            var product = await _productRepository.GetById((int)id);
             if (product == null)
             {
                 return NotFound();
@@ -131,7 +134,7 @@ namespace WebApp.Strategy.Controllers
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById(id.ToString());
+            var product = await _productRepository.GetById((int)id);
             if (product == null)
             {
                 return NotFound();
@@ -145,7 +148,7 @@ namespace WebApp.Strategy.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _productRepository.GetById(id.ToString());
+            var product = await _productRepository.GetById(id);
             await _productRepository.Delete(product);
 
             return RedirectToAction(nameof(Index));
@@ -153,7 +156,7 @@ namespace WebApp.Strategy.Controllers
 
         private bool ProductExists(int id)
         {
-            return _productRepository.GetById(id.ToString()) != null;
+            return _productRepository.GetById(id) != null;
         }
     }
 }
