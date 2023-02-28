@@ -19,6 +19,7 @@ namespace WebApp.Strategy.Repositories
             var database = client.GetDatabase("ProductDb");
 
             _productCollection = database.GetCollection<Product>("Products");
+
         }
 
         public async Task Delete(Product product)
@@ -33,7 +34,8 @@ namespace WebApp.Strategy.Repositories
 
         public async Task<Product> GetById(int id)
         {
-            throw new System.NotImplementedException();
+            return await _productCollection.Find(f => f.Id == id).FirstOrDefaultAsync();
+
         }
 
         public async Task<Product> Save(Product product)
