@@ -6,7 +6,7 @@ namespace WebApp.Strategy.Repositories
 {
     public interface IProductRepository
     {
-        Task<Product> GetById(int productId);
+        Task<Product> GetById(string productId);
 
         Task<List<Product>> GetAllByUserId(string userId);
 

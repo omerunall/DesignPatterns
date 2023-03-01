@@ -33,14 +33,14 @@ namespace WebApp.Strategy.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById((int)id);
+            var product = await _productRepository.GetById(id);
             if (product == null)
             {
                 return NotFound();
@@ -77,14 +77,14 @@ namespace WebApp.Strategy.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById((int)id);
+            var product = await _productRepository.GetById((id));
             if (product == null)
             {
                 return NotFound();
@@ -97,7 +97,7 @@ namespace WebApp.Strategy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Stock,UserId,CreatedDate")] Product product)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Price,Stock,UserId,CreatedDate")] Product product)
         {
             if (id != product.Id)
             {
@@ -112,14 +112,7 @@ namespace WebApp.Strategy.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -127,14 +120,14 @@ namespace WebApp.Strategy.Controllers
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var product = await _productRepository.GetById((int)id);
+            var product = await _productRepository.GetById(id);
             if (product == null)
             {
                 return NotFound();
@@ -146,7 +139,7 @@ namespace WebApp.Strategy.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var product = await _productRepository.GetById(id);
             await _productRepository.Delete(product);
@@ -154,7 +147,7 @@ namespace WebApp.Strategy.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool ProductExists(string id)
         {
             return _productRepository.GetById(id) != null;
         }

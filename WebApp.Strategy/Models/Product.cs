@@ -8,12 +8,12 @@ namespace WebApp.Strategy.Models
 {
     public class Product
     {
+
         [BsonId]
         [Key]
         [BsonRepresentation(BsonType.ObjectId)] //strinn gönderdigim id object olrak gelcek
-        public int Id { get; set; }
-        
 
+        public string Id { get; set; }
         public string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
