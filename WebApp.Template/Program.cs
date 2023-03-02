@@ -29,10 +29,10 @@ namespace BaseProject
 
             if (!userManager.Users.Any())
             {
-                userManager.CreateAsync(new AppUser() { UserName = "Test", Email = "test1@outlook.com", }, "Password12*").Wait();
-                userManager.CreateAsync(new AppUser() { UserName = "Test1", Email = "test2@outlook.com", }, "Password12*").Wait();
-                userManager.CreateAsync(new AppUser() { UserName = "Test2", Email = "test3@outlook.com", }, "Password12*").Wait();
-                userManager.CreateAsync(new AppUser() { UserName = "Test3", Email = "test4@outlook.com", }, "Password12*").Wait();
+                userManager.CreateAsync(new AppUser() { UserName = "Test", Email = "test1@outlook.com",PictureUrl = "/pictures/user.png",Description ="omer Acýklamasý" }, "Password12*").Wait();
+                userManager.CreateAsync(new AppUser() { UserName = "Test1", Email = "test2@outlook.com", PictureUrl = "/pictures/user.png", Description = "omer Acýklamasý" }, "Password12*").Wait();
+                userManager.CreateAsync(new AppUser() { UserName = "Test2", Email = "test3@outlook.com", PictureUrl = "/pictures/user.png", Description = "omer Acýklamasý" }, "Password12*").Wait();
+                userManager.CreateAsync(new AppUser() { UserName = "Test3", Email = "test4@outlook.com", PictureUrl = "/pictures/user.png", Description = "omer Acýklamasý" }, "Password12*").Wait();
 
 
 

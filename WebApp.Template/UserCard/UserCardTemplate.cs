@@ -23,7 +23,7 @@ namespace WebApp.Template.UserCard
             sb.Append("<div class='card'>");
             sb.Append(SetPicure());
             sb.Append($@"<div class='card-body'>" +
-                $"<h5>{AppUser.UserName}<h5>" +
+                $"<h2>{AppUser.UserName}<h5>" +
                 $"<p>{AppUser.Description}</p>");
 
             sb.Append(SetFooter());
@@ -32,10 +32,6 @@ namespace WebApp.Template.UserCard
             sb.Append("</div>");
             return sb.ToString();
         }
-
-
-
-
         protected abstract string SetFooter();
         protected abstract string SetPicure(); //üye kullanıcıların profil resimlerinin getireceğim yer bağımsız
     }
