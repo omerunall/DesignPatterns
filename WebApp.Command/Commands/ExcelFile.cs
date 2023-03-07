@@ -20,7 +20,7 @@ namespace WebApp.Command.Commands
         {
             _list = list;
         }
-        public Task<MemoryStream> Create()
+        public MemoryStream Create()
         {
             var wb = new XLWorkbook();
             var ds = new DataSet();
@@ -31,7 +31,7 @@ namespace WebApp.Command.Commands
 
             var excelMemory = new MemoryStream();
             wb.SaveAs(excelMemory);
-            return Task.FromResult(excelMemory);
+            return excelMemory;
         }
         public DataTable GetTable()
         {
